@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.venv
+__pycache__/
+.DS_Store
+*.pyc
+data/alert_state.json
+prompts/system_prompt.ru.md
+prompts/system_prompt.en.md
+prompts/*.private.*
