@@ -36,7 +36,14 @@ jobs:
           restore-keys: |
             alert-state-
 
-      - name: Run alert pipine
+      - name: Restore private system prompt
+        env:
+          SYSTEM_PROMPT_RU: ${{ secrets.SYSTEM_PROMPT_RU }}
+        run: |
+          mkdir -p prompts
+          printf '%s' "$SYSTEM_PROMPT_RU" > prompts/system_prompt.ru.md
+
+      - name: Run alert pipeline
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
