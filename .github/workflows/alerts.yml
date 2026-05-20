@@ -43,18 +43,6 @@ jobs:
           mkdir -p prompts
           printf '%s' "$SYSTEM_PROMPT_RU" > prompts/system_prompt.ru.md
 
-      - name: Verify prompt restored
-        env:
-          SYSTEM_PROMPT_RU: ${{ secrets.SYSTEM_PROMPT_RU }}
-        run: |
-          echo "pwd: $(pwd)"
-          echo "ls prompts/:"
-          ls -la prompts/
-          echo "secret length: ${#SYSTEM_PROMPT_RU}"
-          echo "file size: $(wc -c < prompts/system_prompt.ru.md) bytes"
-          echo "first 200 chars:"
-          head -c 200 prompts/system_prompt.ru.md
-          echo ""
       - name: Run alert pipeline
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
